@@ -1,0 +1,1195 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Heidelitalia – Italienisches Restaurant in Heidelberg</title>
+<meta name="description" content="Heidelitalia – gehobene italienische Küche mitten in Heidelberg. Traditionelle Pasta, Pizza aus dem Steinofen und italienische Gastfreundschaft. Jetzt Tisch reservieren.">
+<meta name="keywords" content="Italienisches Restaurant Heidelberg, Italiener Heidelberg, Restaurant Heidelberg, Pasta Heidelberg, Pizza Heidelberg, gehobenes italienisches Restaurant Heidelberg">
+<meta property="og:title" content="Heidelitalia – Italienisches Restaurant in Heidelberg">
+<meta property="og:description" content="Italienische Leidenschaft. Mitten in Heidelberg. Entdecken Sie Heidelitalia – Cucina Italiana im Herzen der Stadt.">
+<meta property="og:type" content="restaurant.restaurant">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  /* ============ DESIGN TOKENS ============ */
+  :root{
+    --ivory:#F4EEE2;
+    --ivory-soft:#EFE7D6;
+    --ink:#17140F;
+    --ink-soft:#232019;
+    --gold:#B08D4F;
+    --gold-bright:#D3AE6F;
+    --terracotta:#A24A2A;
+    --terracotta-deep:#7E3A20;
+    --line: rgba(176,141,79,0.35);
+
+    --font-display:'Fraunces', Georgia, serif;
+    --font-body:'Manrope', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+
+    --space-1: 0.5rem;
+    --space-2: 1rem;
+    --space-3: 1.75rem;
+    --space-4: 3rem;
+    --space-5: 5rem;
+    --space-6: 8rem;
+
+    --container: 1240px;
+    --ease: cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  *,*::before,*::after{ box-sizing:border-box; }
+  html{ scroll-behavior:smooth; }
+  @media (prefers-reduced-motion: reduce){
+    html{ scroll-behavior:auto; }
+    *,*::before,*::after{ animation-duration:0.001ms !important; animation-iteration-count:1 !important; transition-duration:0.001ms !important; scroll-behavior:auto !important; }
+  }
+  body{
+    margin:0;
+    background:var(--ivory);
+    color:var(--ink);
+    font-family:var(--font-body);
+    font-weight:400;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  img{ max-width:100%; display:block; }
+  a{ color:inherit; text-decoration:none; }
+  ul{ margin:0; padding:0; list-style:none; }
+  h1,h2,h3,h4{ font-family:var(--font-display); font-weight:500; margin:0; letter-spacing:0.01em; }
+  p{ margin:0; }
+  button{ font-family:inherit; cursor:pointer; }
+
+  :focus-visible{
+    outline:2px solid var(--gold-bright);
+    outline-offset:3px;
+  }
+
+  .container{
+    max-width:var(--container);
+    margin:0 auto;
+    padding:0 var(--space-3);
+  }
+  @media (max-width:640px){
+    .container{ padding:0 1.25rem; }
+  }
+
+  .eyebrow{
+    display:inline-flex;
+    align-items:center;
+    gap:0.75rem;
+    font-family:var(--font-body);
+    font-size:0.72rem;
+    letter-spacing:0.28em;
+    text-transform:uppercase;
+    color:var(--terracotta-deep);
+    font-weight:600;
+  }
+  .eyebrow::before{
+    content:"";
+    width:28px; height:1px;
+    background:var(--terracotta);
+  }
+  .section-head{
+    max-width:640px;
+    margin-bottom:var(--space-4);
+  }
+  .section-head h2{
+    font-size:clamp(2rem, 4vw, 3rem);
+    margin-top:0.9rem;
+    color:var(--ink);
+  }
+  .section-head p{
+    margin-top:1.1rem;
+    color:var(--ink-soft);
+    font-size:1.05rem;
+    max-width:52ch;
+  }
+
+  /* Skip link */
+  .skip-link{
+    position:absolute; left:-999px; top:0;
+    background:var(--ink); color:var(--ivory);
+    padding:0.9rem 1.4rem; z-index:200;
+    font-size:0.9rem; border-radius:0 0 6px 0;
+  }
+  .skip-link:focus{ left:0; }
+
+  /* ============ BUTTONS ============ */
+  .btn{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    gap:0.6rem;
+    padding:1rem 2rem;
+    font-size:0.85rem;
+    font-weight:600;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    border-radius:2px;
+    border:1px solid transparent;
+    transition:transform 0.5s var(--ease), background 0.4s var(--ease), color 0.4s var(--ease), border-color 0.4s var(--ease);
+    white-space:nowrap;
+  }
+  .btn-gold{
+    background:linear-gradient(135deg, var(--gold-bright), var(--gold));
+    color:var(--ink);
+  }
+  .btn-gold:hover{ transform:translateY(-2px); filter:brightness(1.06); }
+  .btn-outline{
+    border-color:rgba(244,238,226,0.55);
+    color:var(--ivory);
+    background:transparent;
+  }
+  .btn-outline:hover{
+    background:rgba(244,238,226,0.1);
+    border-color:var(--ivory);
+    transform:translateY(-2px);
+  }
+  .btn-line{
+    border-color:var(--ink);
+    color:var(--ink);
+    background:transparent;
+  }
+  .btn-line:hover{
+    background:var(--ink);
+    color:var(--ivory);
+  }
+  .btn-sm{ padding:0.85rem 1.5rem; font-size:0.78rem; }
+
+  /* ============ HEADER / NAV ============ */
+  .site-header{
+    position:fixed;
+    top:0; left:0; right:0;
+    z-index:100;
+    padding:1.4rem 0;
+    transition:background 0.5s var(--ease), padding 0.5s var(--ease), box-shadow 0.5s var(--ease), border-color .5s var(--ease);
+    border-bottom:1px solid transparent;
+  }
+  .site-header.is-scrolled{
+    background:rgba(23,20,15,0.92);
+    backdrop-filter:blur(10px);
+    padding:0.9rem 0;
+    border-color:rgba(176,141,79,0.25);
+  }
+  .nav-inner{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+  }
+  .brand{
+    font-family:var(--font-display);
+    font-style:italic;
+    font-size:1.5rem;
+    color:var(--ivory);
+    letter-spacing:0.02em;
+  }
+  .brand span{ color:var(--gold-bright); font-style:normal; }
+  .nav-links{
+    display:flex;
+    align-items:center;
+    gap:2.3rem;
+  }
+  .nav-links a:not(.btn){
+    font-size:0.82rem;
+    letter-spacing:0.1em;
+    text-transform:uppercase;
+    color:var(--ivory);
+    opacity:0.85;
+    position:relative;
+    padding-bottom:4px;
+  }
+  .nav-links a:not(.btn)::after{
+    content:"";
+    position:absolute; left:0; bottom:0;
+    width:0; height:1px;
+    background:var(--gold-bright);
+    transition:width 0.4s var(--ease);
+  }
+  .nav-links a:not(.btn):hover{ opacity:1; }
+  .nav-links a:not(.btn):hover::after{ width:100%; }
+
+  .nav-cta{ display:flex; align-items:center; gap:1.6rem; }
+  .nav-cta .btn{ padding:0.8rem 1.6rem; font-size:0.78rem; }
+
+  .hamburger{
+    display:none;
+    width:26px; height:20px;
+    position:relative;
+    background:none; border:none;
+    padding:0;
+  }
+  .hamburger span{
+    position:absolute; left:0; right:0; height:1.5px;
+    background:var(--ivory);
+    transition:transform 0.35s var(--ease), opacity 0.35s var(--ease), top 0.35s var(--ease);
+  }
+  .hamburger span:nth-child(1){ top:0; }
+  .hamburger span:nth-child(2){ top:9px; }
+  .hamburger span:nth-child(3){ top:18px; }
+  .hamburger.is-open span:nth-child(1){ top:9px; transform:rotate(45deg); }
+  .hamburger.is-open span:nth-child(2){ opacity:0; }
+  .hamburger.is-open span:nth-child(3){ top:9px; transform:rotate(-45deg); }
+
+  .mobile-menu{
+    position:fixed; inset:0;
+    background:var(--ink);
+    z-index:99;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    gap:2rem;
+    transform:translateY(-100%);
+    transition:transform 0.55s var(--ease);
+  }
+  .mobile-menu.is-open{ transform:translateY(0); }
+  .mobile-menu a{
+    font-family:var(--font-display);
+    font-size:1.9rem;
+    color:var(--ivory);
+  }
+  .mobile-menu .btn{ margin-top:1rem; }
+
+  /* ============ HERO ============ */
+  .hero{
+    position:relative;
+    min-height:100svh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    overflow:hidden;
+    background:var(--ink);
+  }
+  .hero-media{
+    position:absolute; inset:0;
+    z-index:0;
+  }
+  .hero-media img{
+    width:100%; height:100%; object-fit:cover;
+    animation:heroZoom 22s ease-in-out infinite alternate;
+  }
+  @keyframes heroZoom{
+    from{ transform:scale(1); }
+    to{ transform:scale(1.09); }
+  }
+  .hero-media::after{
+    content:"";
+    position:absolute; inset:0;
+    background:
+      linear-gradient(180deg, rgba(15,13,10,0.55) 0%, rgba(15,13,10,0.35) 35%, rgba(15,13,10,0.75) 100%);
+  }
+  .hero-content{
+    position:relative;
+    z-index:2;
+    text-align:center;
+    color:var(--ivory);
+    padding:0 1.5rem;
+    max-width:900px;
+  }
+  .hero-kicker{
+    font-size:0.78rem;
+    letter-spacing:0.4em;
+    text-transform:uppercase;
+    color:var(--gold-bright);
+    opacity:0;
+    animation:fadeUp 1s var(--ease) 0.2s forwards;
+  }
+  .hero-title{
+    font-size:clamp(3.2rem, 10vw, 7.2rem);
+    font-style:italic;
+    font-weight:400;
+    line-height:0.95;
+    margin:0.6rem 0 0.9rem;
+    opacity:0;
+    animation:fadeUp 1.1s var(--ease) 0.4s forwards;
+  }
+  .hero-sub{
+    font-family:var(--font-body);
+    font-size:1rem;
+    letter-spacing:0.06em;
+    color:rgba(244,238,226,0.85);
+    max-width:44ch;
+    margin:0 auto;
+    opacity:0;
+    animation:fadeUp 1.1s var(--ease) 0.6s forwards;
+  }
+  .hero-actions{
+    margin-top:2.6rem;
+    display:flex;
+    gap:1.1rem;
+    justify-content:center;
+    flex-wrap:wrap;
+    opacity:0;
+    animation:fadeUp 1.1s var(--ease) 0.8s forwards;
+  }
+  @keyframes fadeUp{
+    from{ opacity:0; transform:translateY(18px); }
+    to{ opacity:1; transform:translateY(0); }
+  }
+  .hero-scroll{
+    position:absolute;
+    bottom:2.2rem; left:50%;
+    transform:translateX(-50%);
+    z-index:2;
+    display:flex; flex-direction:column; align-items:center; gap:0.6rem;
+    color:var(--ivory);
+    opacity:0.7;
+    font-size:0.68rem;
+    letter-spacing:0.3em;
+    text-transform:uppercase;
+  }
+  .hero-scroll .line{
+    width:1px; height:36px;
+    background:linear-gradient(var(--gold-bright), transparent);
+    animation:scrollPulse 2.2s ease-in-out infinite;
+  }
+  @keyframes scrollPulse{
+    0%,100%{ opacity:0.3; } 50%{ opacity:1; }
+  }
+
+  /* ============ MARQUEE (signature element) ============ */
+  .marquee{
+    background:var(--ink);
+    color:var(--gold-bright);
+    padding:1.3rem 0;
+    overflow:hidden;
+    border-top:1px solid var(--line);
+    border-bottom:1px solid var(--line);
+  }
+  .marquee-track{
+    display:flex;
+    width:max-content;
+    animation:marqueeScroll 38s linear infinite;
+  }
+  .marquee:hover .marquee-track{ animation-play-state:paused; }
+  .marquee-item{
+    font-family:var(--font-display);
+    font-style:italic;
+    font-size:1.35rem;
+    padding:0 2.4rem;
+    white-space:nowrap;
+    color:var(--ivory);
+    display:flex;
+    align-items:center;
+    gap:2.4rem;
+  }
+  .marquee-item::after{
+    content:"✦";
+    font-size:0.7rem;
+    color:var(--gold);
+  }
+  @keyframes marqueeScroll{
+    from{ transform:translateX(0); }
+    to{ transform:translateX(-50%); }
+  }
+
+  /* ============ ABOUT ============ */
+  .about{
+    padding:var(--space-6) 0;
+    background:var(--ivory);
+  }
+  .about-grid{
+    display:grid;
+    grid-template-columns:0.9fr 1.1fr;
+    gap:var(--space-5);
+    align-items:center;
+  }
+  .about-media{
+    position:relative;
+  }
+  .about-media img{
+    width:100%; aspect-ratio:4/5; object-fit:cover;
+    border-radius:2px;
+  }
+  .about-media::before{
+    content:"";
+    position:absolute;
+    inset:-18px auto auto -18px;
+    width:70%; height:70%;
+    border:1px solid var(--gold);
+    z-index:-1;
+  }
+  .about-copy p{
+    color:var(--ink-soft);
+    margin-bottom:1.2rem;
+    font-size:1.02rem;
+  }
+  .about-copy p:last-of-type{ margin-bottom:0; }
+  .about-stats{
+    display:flex;
+    gap:var(--space-4);
+    margin-top:var(--space-4);
+    padding-top:var(--space-3);
+    border-top:1px solid var(--line);
+  }
+  .about-stat b{
+    display:block;
+    font-family:var(--font-display);
+    font-size:2.1rem;
+    color:var(--terracotta-deep);
+  }
+  .about-stat span{
+    font-size:0.78rem;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    color:var(--ink-soft);
+  }
+
+  /* ============ MENU ============ */
+  .menu{
+    padding:var(--space-6) 0;
+    background:var(--ink);
+    color:var(--ivory);
+    position:relative;
+  }
+  .menu .eyebrow{ color:var(--gold-bright); }
+  .menu .eyebrow::before{ background:var(--gold); }
+  .menu .section-head h2{ color:var(--ivory); }
+  .menu .section-head p{ color:rgba(244,238,226,0.7); }
+
+  .menu-tabs{
+    display:flex;
+    flex-wrap:wrap;
+    gap:0.7rem;
+    margin-bottom:var(--space-4);
+  }
+  .menu-tab{
+    background:transparent;
+    border:1px solid rgba(244,238,226,0.25);
+    color:rgba(244,238,226,0.75);
+    padding:0.65rem 1.3rem;
+    font-size:0.76rem;
+    letter-spacing:0.12em;
+    text-transform:uppercase;
+    border-radius:999px;
+    transition:all 0.35s var(--ease);
+  }
+  .menu-tab:hover{ border-color:var(--gold-bright); color:var(--ivory); }
+  .menu-tab.is-active{
+    background:var(--gold-bright);
+    border-color:var(--gold-bright);
+    color:var(--ink);
+  }
+  .menu-panels{ min-height:280px; }
+  .menu-panel{ display:none; }
+  .menu-panel.is-active{ display:block; animation:fadeUp 0.6s var(--ease); }
+  .menu-list{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:1rem 3rem;
+  }
+  .menu-row{
+    display:flex;
+    justify-content:space-between;
+    align-items:baseline;
+    gap:1rem;
+    padding:1rem 0;
+    border-bottom:1px dashed rgba(244,238,226,0.18);
+  }
+  .menu-dish{ display:flex; flex-direction:column; gap:0.25rem; }
+  .menu-dish b{
+    font-family:var(--font-display);
+    font-weight:500;
+    font-size:1.15rem;
+    font-style:italic;
+  }
+  .menu-dish small{
+    color:rgba(244,238,226,0.55);
+    font-size:0.82rem;
+  }
+  .menu-price{
+    font-family:var(--font-display);
+    color:var(--gold-bright);
+    font-size:1rem;
+    white-space:nowrap;
+  }
+  .menu-note{
+    margin-top:var(--space-4);
+    font-size:0.85rem;
+    color:rgba(244,238,226,0.5);
+    font-style:italic;
+  }
+  .menu-cta{ margin-top:var(--space-4); }
+
+  /* ============ GALLERY ============ */
+  .gallery{
+    padding:var(--space-6) 0;
+    background:var(--ivory);
+  }
+  .gallery-grid{
+    display:grid;
+    grid-template-columns:repeat(4, 1fr);
+    grid-auto-rows:170px;
+    gap:0.9rem;
+  }
+  .gallery-item{
+    position:relative;
+    overflow:hidden;
+    border-radius:2px;
+  }
+  .gallery-item img{
+    width:100%; height:100%; object-fit:cover;
+    transition:transform 0.9s var(--ease), filter 0.6s var(--ease);
+  }
+  .gallery-item:hover img{ transform:scale(1.08); filter:brightness(0.85); }
+  .gallery-item.tall{ grid-row:span 2; }
+  .gallery-item.wide{ grid-column:span 2; }
+  .gallery-caption{
+    position:absolute; left:0; right:0; bottom:0;
+    padding:1rem 1.1rem;
+    background:linear-gradient(0deg, rgba(15,13,10,0.75), transparent);
+    color:var(--ivory);
+    font-family:var(--font-display);
+    font-style:italic;
+    font-size:0.95rem;
+    opacity:0;
+    transform:translateY(8px);
+    transition:all 0.5s var(--ease);
+  }
+  .gallery-item:hover .gallery-caption{ opacity:1; transform:translateY(0); }
+
+  /* ============ QUOTE ============ */
+  .quote{
+    padding:var(--space-5) 0;
+    background:var(--ivory-soft);
+    text-align:center;
+  }
+  .quote blockquote{
+    max-width:760px;
+    margin:0 auto;
+    font-family:var(--font-display);
+    font-style:italic;
+    font-size:clamp(1.5rem, 3vw, 2.3rem);
+    color:var(--ink);
+    line-height:1.4;
+  }
+  .quote cite{
+    display:block;
+    margin-top:1.4rem;
+    font-family:var(--font-body);
+    font-style:normal;
+    font-size:0.78rem;
+    letter-spacing:0.2em;
+    text-transform:uppercase;
+    color:var(--terracotta-deep);
+  }
+
+  /* ============ RESERVATION BANNER ============ */
+  .reserve-banner{
+    padding:var(--space-5) 0;
+    background:linear-gradient(120deg, var(--terracotta-deep), var(--terracotta));
+    color:var(--ivory);
+  }
+  .reserve-inner{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:2rem;
+    flex-wrap:wrap;
+  }
+  .reserve-inner h3{
+    font-size:clamp(1.6rem, 3vw, 2.3rem);
+    max-width:520px;
+    color:var(--ivory);
+  }
+  .reserve-inner p{
+    color:rgba(244,238,226,0.85);
+    margin-top:0.6rem;
+  }
+
+  /* ============ CONTACT ============ */
+  .contact{
+    padding:var(--space-6) 0;
+    background:var(--ink);
+    color:var(--ivory);
+  }
+  .contact .eyebrow{ color:var(--gold-bright); }
+  .contact .eyebrow::before{ background:var(--gold); }
+  .contact-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:var(--space-5);
+  }
+  .contact-info h2{ color:var(--ivory); font-size:clamp(2rem,4vw,2.8rem); margin-bottom:1.6rem; }
+  .contact-block{
+    display:flex;
+    gap:1.1rem;
+    padding:1.4rem 0;
+    border-bottom:1px solid rgba(244,238,226,0.12);
+  }
+  .contact-block .icon{
+    width:38px; height:38px;
+    border:1px solid var(--gold);
+    border-radius:50%;
+    display:flex; align-items:center; justify-content:center;
+    flex-shrink:0;
+    color:var(--gold-bright);
+    font-size:1rem;
+  }
+  .contact-block h4{
+    font-family:var(--font-body);
+    font-weight:600;
+    font-size:0.78rem;
+    letter-spacing:0.12em;
+    text-transform:uppercase;
+    color:rgba(244,238,226,0.5);
+    margin-bottom:0.35rem;
+  }
+  .contact-block a, .contact-block p{
+    font-size:1.05rem;
+    color:var(--ivory);
+  }
+  .contact-actions{
+    display:flex;
+    gap:1rem;
+    margin-top:2rem;
+    flex-wrap:wrap;
+  }
+  .contact-map{
+    position:relative;
+    border-radius:2px;
+    overflow:hidden;
+    min-height:380px;
+  }
+  .contact-map img{ width:100%; height:100%; object-fit:cover; min-height:380px; }
+  .contact-map::after{
+    content:"";
+    position:absolute; inset:0;
+    background:linear-gradient(0deg, rgba(15,13,10,0.55), rgba(15,13,10,0.05));
+  }
+  .contact-map .map-pin{
+    position:absolute; bottom:1.6rem; left:1.6rem; right:1.6rem;
+    z-index:2;
+    background:rgba(23,20,15,0.82);
+    backdrop-filter:blur(6px);
+    padding:1.2rem 1.4rem;
+    border:1px solid var(--line);
+  }
+  .contact-map .map-pin p{ color:var(--ivory); font-size:0.95rem; margin-bottom:0.7rem; }
+
+  /* ============ FOOTER ============ */
+  .site-footer{
+    background:#100E0A;
+    color:rgba(244,238,226,0.7);
+    padding:var(--space-5) 0 var(--space-3);
+  }
+  .footer-grid{
+    display:grid;
+    grid-template-columns:1.4fr 1fr 1fr 1fr;
+    gap:var(--space-4);
+    padding-bottom:var(--space-4);
+    border-bottom:1px solid rgba(244,238,226,0.1);
+  }
+  .footer-brand .brand{ margin-bottom:1rem; display:inline-block; }
+  .footer-brand p{ max-width:34ch; font-size:0.92rem; line-height:1.7; }
+  .footer-col h5{
+    font-family:var(--font-body);
+    font-size:0.76rem;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    color:var(--gold-bright);
+    margin-bottom:1.1rem;
+    font-weight:600;
+  }
+  .footer-col li{ margin-bottom:0.7rem; font-size:0.92rem; }
+  .footer-col a:hover{ color:var(--ivory); }
+  .footer-bottom{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding-top:1.6rem;
+    font-size:0.8rem;
+    flex-wrap:wrap;
+    gap:1rem;
+  }
+  .footer-social{ display:flex; gap:1rem; }
+  .footer-social a{
+    width:36px; height:36px;
+    border:1px solid rgba(244,238,226,0.2);
+    border-radius:50%;
+    display:flex; align-items:center; justify-content:center;
+    font-size:0.85rem;
+    transition:all 0.35s var(--ease);
+  }
+  .footer-social a:hover{ border-color:var(--gold-bright); color:var(--gold-bright); }
+
+  /* ============ REVEAL ANIMATION ============ */
+  .reveal{
+    opacity:0;
+    transform:translateY(26px);
+    transition:opacity 0.9s var(--ease), transform 0.9s var(--ease);
+  }
+  .reveal.is-visible{ opacity:1; transform:translateY(0); }
+
+  /* Sticky mobile call bar */
+  .mobile-call-bar{
+    display:none;
+    position:fixed;
+    bottom:0; left:0; right:0;
+    z-index:90;
+    background:var(--ink);
+    border-top:1px solid var(--line);
+    padding:0.8rem 1rem;
+    gap:0.7rem;
+  }
+  .mobile-call-bar a{
+    flex:1;
+    text-align:center;
+    padding:0.9rem;
+    font-size:0.78rem;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    font-weight:600;
+    border-radius:2px;
+  }
+
+  /* ============ RESPONSIVE ============ */
+  @media (max-width:1024px){
+    .about-grid, .contact-grid{ grid-template-columns:1fr; }
+    .about-media{ order:-1; max-width:420px; }
+    .footer-grid{ grid-template-columns:1fr 1fr; }
+    .gallery-grid{ grid-template-columns:repeat(2,1fr); }
+    .gallery-item.wide{ grid-column:span 2; }
+  }
+  @media (max-width:860px){
+    .nav-links, .nav-cta .btn:first-child{ display:none; }
+    .hamburger{ display:block; }
+    .menu-list{ grid-template-columns:1fr; }
+  }
+  @media (max-width:640px){
+    :root{ --space-6:5rem; --space-5:3.2rem; }
+    .footer-grid{ grid-template-columns:1fr; gap:2.2rem; }
+    .reserve-inner{ flex-direction:column; align-items:flex-start; }
+    .mobile-call-bar{ display:flex; }
+    body{ padding-bottom:64px; }
+    .about-stats{ gap:2rem; flex-wrap:wrap; }
+    .contact-actions .btn{ flex:1; }
+  }
+</style>
+</head>
+<body>
+<a href="#main" class="skip-link">Zum Inhalt springen</a>
+
+<!-- ============ HEADER ============ -->
+<header class="site-header" id="siteHeader">
+  <div class="container nav-inner">
+    <a href="#home" class="brand">Heidel<span>italia</span></a>
+    <nav class="nav-links" aria-label="Hauptnavigation">
+      <a href="#home">Home</a>
+      <a href="#about">Über uns</a>
+      <a href="#menu">Speisekarte</a>
+      <a href="#gallery">Galerie</a>
+      <a href="#contact">Kontakt</a>
+    </nav>
+    <div class="nav-cta">
+      <a href="tel:+49XXXXXXXXXX" class="btn btn-outline">Anrufen</a>
+      <a href="#reservieren" class="btn btn-gold">Tisch reservieren</a>
+      <button class="hamburger" id="hamburgerBtn" aria-label="Menü öffnen" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#home">Home</a>
+  <a href="#about">Über uns</a>
+  <a href="#menu">Speisekarte</a>
+  <a href="#gallery">Galerie</a>
+  <a href="#contact">Kontakt</a>
+  <a href="#reservieren" class="btn btn-gold">Tisch reservieren</a>
+</div>
+
+<main id="main">
+
+  <!-- ============ HERO ============ -->
+  <section class="hero" id="home">
+    <div class="hero-media">
+      <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?q=80&w=1920&auto=format&fit=crop" alt="Elegant gedeckter Tisch mit italienischem Gericht in warmem Restaurantlicht">
+    </div>
+    <div class="hero-content">
+      <p class="hero-kicker">Cucina Italiana · Heidelberg</p>
+      <h1 class="hero-title">Heidelitalia</h1>
+      <p class="hero-sub">Italienische Leidenschaft. Mitten in Heidelberg.</p>
+      <div class="hero-actions">
+        <a href="#menu" class="btn btn-gold">Speisekarte</a>
+        <a href="#reservieren" class="btn btn-outline">Tisch reservieren</a>
+      </div>
+    </div>
+    <div class="hero-scroll" aria-hidden="true">
+      <span>Scroll</span>
+      <span class="line"></span>
+    </div>
+  </section>
+
+  <!-- ============ MARQUEE ============ -->
+  <div class="marquee" aria-hidden="true">
+    <div class="marquee-track" id="marqueeTrack"></div>
+  </div>
+
+  <!-- ============ ABOUT ============ -->
+  <section class="about" id="about">
+    <div class="container about-grid">
+      <div class="about-media reveal">
+        <img src="https://images.unsplash.com/photo-1466978913421-dad2ebd01d17?q=80&w=1200&auto=format&fit=crop" alt="Warmes Interieur des Restaurants Heidelitalia">
+      </div>
+      <div class="about-copy reveal">
+        <span class="eyebrow">Über Heidelitalia</span>
+        <h2>La Dolce Vita in Heidelberg</h2>
+        <p>Heidelitalia verbindet die Handschrift der traditionellen italienischen Küche mit einem ruhigen, modernen Restaurantkonzept. Bei uns entsteht jedes Gericht aus wenigen, ausgesuchten Zutaten – so, wie es die italienische Küche seit jeher auszeichnet.</p>
+        <p>Wir verstehen unser Restaurant nicht nur als Ort zum Essen, sondern als kleines italienisches Erlebnis in der Heidelberger Altstadt: mit italienischer Gastfreundschaft, sorgfältig komponierten Weinen und einem Ambiente, das zum Verweilen einlädt.</p>
+        <div class="about-stats">
+          <div class="about-stat">
+            <b>100%</b>
+            <span>Hausgemachte Pasta</span>
+          </div>
+          <div class="about-stat">
+            <b>Legna</b>
+            <span>Pizza aus dem Steinofen</span>
+          </div>
+          <div class="about-stat">
+            <b>Cantina</b>
+            <span>Italienische Weinauswahl</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ MENU ============ -->
+  <section class="menu" id="menu">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="eyebrow">Speisekarte</span>
+        <h2>Ausgewählt, saisonal, italienisch</h2>
+        <p>Ein Auszug unserer Karte – von hausgemachter Pasta bis zur Pizza aus dem Steinofen. Die vollständige Karte erhalten Sie im Restaurant.</p>
+      </div>
+
+      <div class="menu-tabs" id="menuTabs" role="tablist" aria-label="Menükategorien"></div>
+      <div class="menu-panels" id="menuPanels"></div>
+
+      <p class="menu-note">Alle Gerichte sind Platzhalter und werden vor Eröffnung final abgestimmt. Preise auf Anfrage.</p>
+      <div class="menu-cta">
+        <a href="#reservieren" class="btn btn-outline" style="border-color:var(--gold); color:var(--ivory);">Tisch reservieren</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ GALLERY ============ -->
+  <section class="gallery" id="gallery">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="eyebrow">Galerie</span>
+        <h2>Impressionen aus der Küche</h2>
+        <p>Ein Blick in unsere Küche, unsere Zutaten und das Ambiente von Heidelitalia.</p>
+      </div>
+      <div class="gallery-grid" id="galleryGrid"></div>
+    </div>
+  </section>
+
+  <!-- ============ QUOTE ============ -->
+  <section class="quote">
+    <div class="container">
+      <blockquote class="reveal">
+        „Gutes Essen beginnt mit guten Zutaten – und endet mit Menschen, die man gerne um sich hat.“
+        <cite>Heidelitalia · Küche &amp; Service</cite>
+      </blockquote>
+    </div>
+  </section>
+
+  <!-- ============ RESERVATION BANNER ============ -->
+  <section class="reserve-banner" id="reservieren">
+    <div class="container reserve-inner">
+      <div class="reveal">
+        <h3>Reservieren Sie Ihren Tisch bei Heidelitalia</h3>
+        <p>Wir freuen uns auf Ihren Besuch – ob zu zweit oder in Gesellschaft.</p>
+      </div>
+      <div style="display:flex; gap:1rem; flex-wrap:wrap;">
+        <a href="[RESERVIERUNGS LINK]" class="btn btn-outline" style="border-color:var(--ivory);">Online reservieren</a>
+        <a href="tel:+49XXXXXXXXXX" class="btn" style="background:var(--ivory); color:var(--terracotta-deep);">Jetzt anrufen</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CONTACT ============ -->
+  <section class="contact" id="contact">
+    <div class="container contact-grid">
+      <div class="contact-info reveal">
+        <span class="eyebrow">Kontakt</span>
+        <h2>Besuchen Sie uns</h2>
+
+        <div class="contact-block">
+          <span class="icon" aria-hidden="true">&#128205;</span>
+          <div>
+            <h4>Adresse</h4>
+            <p>[ADRESSE DES RESTAURANTS], Heidelberg</p>
+          </div>
+        </div>
+        <div class="contact-block">
+          <span class="icon" aria-hidden="true">&#9742;</span>
+          <div>
+            <h4>Telefon</h4>
+            <a href="tel:+49XXXXXXXXXX">[TELEFONNUMMER]</a>
+          </div>
+        </div>
+        <div class="contact-block">
+          <span class="icon" aria-hidden="true">&#128337;</span>
+          <div>
+            <h4>Öffnungszeiten</h4>
+            <p>[ÖFFNUNGSZEITEN]</p>
+          </div>
+        </div>
+
+        <div class="contact-actions">
+          <a href="tel:+49XXXXXXXXXX" class="btn btn-gold">Jetzt anrufen</a>
+          <a href="[GOOGLE MAPS LINK]" class="btn btn-outline" style="border-color:var(--gold); color:var(--ivory);" target="_blank" rel="noopener">Route planen</a>
+        </div>
+      </div>
+
+      <div class="contact-map reveal">
+        <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?q=80&w=1200&auto=format&fit=crop" alt="Blick auf Heidelberg, Standort von Heidelitalia">
+        <div class="map-pin">
+          <p>Heidelitalia · [ADRESSE DES RESTAURANTS], Heidelberg</p>
+          <a href="[GOOGLE MAPS LINK]" class="btn btn-sm btn-gold" target="_blank" rel="noopener">Auf Google Maps öffnen</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <span class="brand">Heidel<span>italia</span></span>
+        <p>Cucina Italiana · Heidelberg. Italienische Küche, hausgemachte Pasta und Pizza aus dem Steinofen im Herzen der Stadt.</p>
+      </div>
+      <div class="footer-col">
+        <h5>Navigation</h5>
+        <ul>
+          <li><a href="#home">Home</a></li>
+          <li><a href="#about">Über uns</a></li>
+          <li><a href="#menu">Speisekarte</a></li>
+          <li><a href="#gallery">Galerie</a></li>
+          <li><a href="#contact">Kontakt</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Kontakt</h5>
+        <ul>
+          <li>[ADRESSE DES RESTAURANTS], Heidelberg</li>
+          <li><a href="tel:+49XXXXXXXXXX">[TELEFONNUMMER]</a></li>
+          <li>[ÖFFNUNGSZEITEN]</li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Rechtliches</h5>
+        <ul>
+          <li><a href="#">Impressum</a></li>
+          <li><a href="#">Datenschutz</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© <span id="year"></span> Heidelitalia. Alle Rechte vorbehalten.</span>
+      <div class="footer-social">
+        <a href="[INSTAGRAM LINK]" aria-label="Instagram" target="_blank" rel="noopener">IG</a>
+        <a href="[FACEBOOK LINK]" aria-label="Facebook" target="_blank" rel="noopener">FB</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- Sticky mobile call/menu bar -->
+<div class="mobile-call-bar">
+  <a href="tel:+49XXXXXXXXXX" class="btn btn-gold">Anrufen</a>
+  <a href="#menu" class="btn btn-outline" style="border-color:var(--ink); color:var(--ink);">Speisekarte</a>
+</div>
+
+<script>
+/* =========================================================
+   ZENTRALE DATENQUELLE
+   Hier lassen sich Adresse, Telefon, Öffnungszeiten, Links
+   und die komplette Speisekarte an EINER Stelle pflegen.
+   Alle Platzhalter im HTML (tel:+49XXXXXXXXXX, [ADRESSE ...])
+   sollten beim Livegang synchron ersetzt werden.
+========================================================= */
+const RESTAURANT_DATA = {
+  name: "Heidelitalia",
+  phoneDisplay: "[TELEFONNUMMER]",
+  phoneHref: "tel:+49XXXXXXXXXX",
+  address: "[ADRESSE DES RESTAURANTS], Heidelberg",
+  hours: "[ÖFFNUNGSZEITEN]",
+  mapsLink: "[GOOGLE MAPS LINK]",
+  reservationLink: "[RESERVIERUNGS LINK]",
+  instagram: "[INSTAGRAM LINK]",
+  facebook: "[FACEBOOK LINK]",
+
+  // Platzhalter-Speisekarte – Gerichte & Preise bitte vor Livegang ersetzen.
+  menu: [
+    {
+      category: "Antipasti",
+      items: [
+        { name: "Vitello Tonnato", desc: "Kalbsrücken, Thunfisch-Kapern-Sauce", price: "Preis" },
+        { name: "Burrata", desc: "Tomaten, Basilikum, Olivenöl", price: "Preis" },
+        { name: "Carpaccio", desc: "Rinderfilet, Parmesan, Rucola", price: "Preis" },
+        { name: "Bruschetta", desc: "Tomate, Knoblauch, Basilikum", price: "Preis" }
+      ]
+    },
+    {
+      category: "Pasta",
+      items: [
+        { name: "Tagliatelle al Tartufo", desc: "Hausgemachte Bandnudeln, Trüffel", price: "Preis" },
+        { name: "Spaghetti Aglio e Olio", desc: "Knoblauch, Chili, Olivenöl", price: "Preis" },
+        { name: "Ravioli", desc: "Hausgemacht, saisonale Füllung", price: "Preis" },
+        { name: "Linguine ai Frutti di Mare", desc: "Meeresfrüchte, Weißwein", price: "Preis" }
+      ]
+    },
+    {
+      category: "Pizza",
+      items: [
+        { name: "Margherita", desc: "Tomate, Mozzarella, Basilikum", price: "Preis" },
+        { name: "Diavola", desc: "Salami piccante, Chili, Mozzarella", price: "Preis" },
+        { name: "Parma", desc: "Parmaschinken, Rucola, Parmesan", price: "Preis" },
+        { name: "Quattro Formaggi", desc: "Vier italienische Käsesorten", price: "Preis" }
+      ]
+    },
+    {
+      category: "Pesce & Carne",
+      items: [
+        { name: "Fisch des Tages", desc: "Tagesfrisch, saisonale Beilage", price: "Preis" },
+        { name: "Gegrillter Oktopus", desc: "Kartoffelpüree, Olivenöl", price: "Preis" },
+        { name: "Saltimbocca", desc: "Kalb, Parmaschinken, Salbei", price: "Preis" },
+        { name: "Filet vom Rind", desc: "Rosmarinjus, Ofengemüse", price: "Preis" }
+      ]
+    },
+    {
+      category: "Dolci",
+      items: [
+        { name: "Tiramisu", desc: "Hausgemacht, Espresso, Mascarpone", price: "Preis" },
+        { name: "Panna Cotta", desc: "Vanille, Waldbeeren", price: "Preis" },
+        { name: "Cannoli", desc: "Sizilianische Art, Ricotta", price: "Preis" },
+        { name: "Gelato", desc: "Wechselnde Tagessorten", price: "Preis" }
+      ]
+    }
+  ],
+
+  gallery: [
+    { img: "https://images.unsplash.com/photo-1621996346565-e3dbc646d9a9?q=80&w=1000&auto=format&fit=crop", caption: "Hausgemachte Pasta", size: "tall" },
+    { img: "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?q=80&w=1000&auto=format&fit=crop", caption: "Pizza aus dem Steinofen", size: "" },
+    { img: "https://images.unsplash.com/photo-1510812431401-41d2bd2722f3?q=80&w=1000&auto=format&fit=crop", caption: "Ausgewählte Weine", size: "" },
+    { img: "https://images.unsplash.com/photo-1552566626-52f8b828add9?q=80&w=1000&auto=format&fit=crop", caption: "Tischkultur bei Heidelitalia", size: "wide" },
+    { img: "https://images.unsplash.com/photo-1498579397066-22750a3cb424?q=80&w=1000&auto=format&fit=crop", caption: "Frische italienische Zutaten", size: "" },
+    { img: "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?q=80&w=1000&auto=format&fit=crop", caption: "Restaurant-Ambiente", size: "tall" },
+    { img: "https://images.unsplash.com/photo-1551024506-0bccd828d307?q=80&w=1000&auto=format&fit=crop", caption: "Dolci der Saison", size: "" }
+  ]
+};
+
+/* ---- Marquee ---- */
+(function buildMarquee(){
+  const track = document.getElementById('marqueeTrack');
+  const categories = RESTAURANT_DATA.menu.map(m => m.category);
+  const doubled = [...categories, ...categories, ...categories, ...categories];
+  track.innerHTML = doubled.map(c => `<span class="marquee-item">${c}</span>`).join('');
+})();
+
+/* ---- Menu tabs & panels ---- */
+(function buildMenu(){
+  const tabsEl = document.getElementById('menuTabs');
+  const panelsEl = document.getElementById('menuPanels');
+
+  RESTAURANT_DATA.menu.forEach((cat, i) => {
+    const tab = document.createElement('button');
+    tab.className = 'menu-tab' + (i === 0 ? ' is-active' : '');
+    tab.textContent = cat.category;
+    tab.setAttribute('role','tab');
+    tab.setAttribute('aria-selected', i === 0 ? 'true' : 'false');
+    tab.dataset.index = i;
+    tab.addEventListener('click', () => activateMenu(i));
+    tabsEl.appendChild(tab);
+
+    const panel = document.createElement('div');
+    panel.className = 'menu-panel' + (i === 0 ? ' is-active' : '');
+    panel.dataset.index = i;
+    const list = document.createElement('div');
+    list.className = 'menu-list';
+    cat.items.forEach(item => {
+      list.innerHTML += `
+        <div class="menu-row">
+          <div class="menu-dish">
+            <b>${item.name}</b>
+            <small>${item.desc}</small>
+          </div>
+          <span class="menu-price">${item.price}</span>
+        </div>`;
+    });
+    panel.appendChild(list);
+    panelsEl.appendChild(panel);
+  });
+
+  function activateMenu(index){
+    document.querySelectorAll('.menu-tab').forEach(t => {
+      const active = Number(t.dataset.index) === index;
+      t.classList.toggle('is-active', active);
+      t.setAttribute('aria-selected', active ? 'true' : 'false');
+    });
+    document.querySelectorAll('.menu-panel').forEach(p => {
+      p.classList.toggle('is-active', Number(p.dataset.index) === index);
+    });
+  }
+})();
+
+/* ---- Gallery ---- */
+(function buildGallery(){
+  const grid = document.getElementById('galleryGrid');
+  grid.innerHTML = RESTAURANT_DATA.gallery.map(g => `
+    <div class="gallery-item ${g.size}">
+      <img src="${g.img}" alt="${g.caption}" loading="lazy">
+      <div class="gallery-caption">${g.caption}</div>
+    </div>
+  `).join('');
+})();
+
+/* ---- Header scroll state ---- */
+const header = document.getElementById('siteHeader');
+window.addEventListener('scroll', () => {
+  header.classList.toggle('is-scrolled', window.scrollY > 40);
+}, { passive:true });
+
+/* ---- Mobile menu ---- */
+const hamburgerBtn = document.getElementById('hamburgerBtn');
+const mobileMenu = document.getElementById('mobileMenu');
+hamburgerBtn.addEventListener('click', () => {
+  const open = mobileMenu.classList.toggle('is-open');
+  hamburgerBtn.classList.toggle('is-open', open);
+  hamburgerBtn.setAttribute('aria-expanded', open);
+  document.body.style.overflow = open ? 'hidden' : '';
+});
+mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+  mobileMenu.classList.remove('is-open');
+  hamburgerBtn.classList.remove('is-open');
+  document.body.style.overflow = '';
+}));
+
+/* ---- Scroll reveal ---- */
+const revealEls = document.querySelectorAll('.reveal');
+const io = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting){
+      entry.target.classList.add('is-visible');
+      io.unobserve(entry.target);
+    }
+  });
+}, { threshold:0.15 });
+revealEls.forEach(el => io.observe(el));
+
+/* ---- Footer year ---- */
+document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+</body>
+</html>
